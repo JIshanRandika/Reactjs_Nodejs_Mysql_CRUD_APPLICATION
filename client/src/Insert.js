@@ -1,8 +1,9 @@
 import './App.css';
 import React, {useState,useEffect} from "react";
 import Axios from 'axios';
+import {Link} from "react-router-dom";
 
-function App() {
+function Insert() {
 
     const [movieName,setMovieName] = useState('');
     const [review,setReview] = useState('');
@@ -42,6 +43,13 @@ function App() {
 
             <button onClick={submitReview}>Submit</button>
 
+            <Link to={"/cards"} >
+                <div style={{width:"50px",height:"20px",background:"#007bff"}}>
+
+                </div>
+            </Link>
+
+
             {movieReviewList.map((val)=> {
                 return<h1>
                     MovieName: {val.movieName} | MovieReview: {val.movieReview}
@@ -52,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default Insert;
