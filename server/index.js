@@ -26,6 +26,16 @@ app.get("/api/get",(req,res)=>{
     });
 })
 
+app.get("/api/getselected",(req,res)=>{
+    const sqlSelect = "select * from movie_reviews where movieReview= ?;"[2]
+    db.query(sqlSelect,(err,result)=>{
+        res.send(result);
+
+    });
+})
+
+
+
 app.post("/api/insert",(req,res)=>{
 
     const movieName = req.body.movieName
