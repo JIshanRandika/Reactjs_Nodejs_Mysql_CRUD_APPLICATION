@@ -27,11 +27,18 @@ app.get("/api/get",(req,res)=>{
 })
 
 app.get("/api/getselected",(req,res)=>{
-    const sqlSelect = "select * from movie_reviews where movieReview= ?;"[2]
-    db.query(sqlSelect,(err,result)=>{
+
+    const fid = req.body.fid
+
+    const sqlSelect = "select * from movie_reviews where id= ?;"
+    db.query(sqlSelect,[fid],(err,result)=>{
         res.send(result);
 
     });
+    // db.query(sqlSelect,(err,result)=>{
+    //     res.send(result);
+    //
+    // });
 })
 
 

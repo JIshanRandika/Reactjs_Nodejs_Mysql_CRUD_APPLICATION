@@ -8,19 +8,57 @@ import Axios from 'axios';
 
 function Blogs() {
 
+    const [id,setid] = useState('');
     const [movieName,setMovieName] = useState('');
     const [review,setReview] = useState('');
     const [movieReviewList, setMovieList] = useState([]);
 
-    const getdata = (id) => {
-        Axios.get('http://localhost:3001/api/getselected/${id}').then((response) =>{
-            setMovieList(response.data);
+
+    // ================
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/api/get").then((response) =>{
+    //         setMovieList(response.data)
+    //     });
+    // },[]);
+    //
+    // const submitReview = () =>{
+    //     Axios.post("http://localhost:3001/api/insert",{
+    //         movieName:movieName,
+    //         movieReview:review
+    //     });
+    //     setMovieList([
+    //         ...movieReviewList,
+    //         {movieName: movieName, movieReview:review}])
+    //
+    // }
+    // ===============
+
+    const getdata = () =>{
+        Axios.put("http://localhost:3001/api/getselected",{
+            fid:id,
+        }).then((response) =>{
+            setMovieList(response.data)
         });
-    };
+        setMovieList([
+            ...movieReviewList,
+            {fid: id,movieName: movieName, movieReview:review}])
+
+    }
+    // const getdata = (id) => {
+    //     Axios.get('http://localhost:3001/api/getselected'
+    //     ).then((response) =>{
+    //         setMovieList(response.data);
+    //     });
+    // };
 
 
     return (
         <div className="Cards">
+            <input type="text" name="id"
+                   onChange={(e)=>{
+                       setid(e.target.value)
+                   }}/>
+            <button onClick={getdata}>Submit</button>
             <Row>
                 <Col>
 
@@ -41,11 +79,12 @@ function Blogs() {
 
                 </Col>
             </Row>
-            <button
-                onClick={() => {
-                    getdata(1);
-                }}
-            > select</button>
+            {/*<button*/}
+            {/*    onClick={() => {*/}
+            {/*        getdata(1);*/}
+            {/*    }}*/}
+            {/*> select</button>*/}
+
             {/*{movieReviewList.map((val)=> {*/}
             {/*    return<h1>*/}
             {/*        MovieName: {val.movieName} | MovieReview: {val.movieReview}*/}
