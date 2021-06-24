@@ -8,16 +8,38 @@ import Axios from 'axios';
 
 function Cards() {
 
+    const [fid,setFid] = useState('');
     const [movieName,setMovieName] = useState('');
     const [review,setReview] = useState('');
     const [movieReviewList, setMovieList] = useState([]);
 
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/api/get").then((response) =>{
+    //         setMovieList(response.data)
+    //     });
+    // },[]);
+
+    // ======================
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/api/getselected").then((response) =>{
+    //
+    //         setMovieList(response.data)
+    //     });
+    // },[]);
+
+
     useEffect(() => {
-        Axios.get("http://localhost:3001/api/get").then((response) =>{
+        Axios.get("http://localhost:3001/api/getselected",{
+            fid:1,
+        }).then((response) =>{
+
             setMovieList(response.data)
         });
-    },[]);
 
+
+    })
+
+    // ===========================
 
         return (
             <div className="Cards">

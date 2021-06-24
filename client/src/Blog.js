@@ -33,17 +33,33 @@ function Blogs() {
     // }
     // ===============
 
-    const getdata = () =>{
-        Axios.put("http://localhost:3001/api/getselected",{
-            fid:id,
-        }).then((response) =>{
-            setMovieList(response.data)
-        });
-        setMovieList([
-            ...movieReviewList,
-            {fid: id,movieName: movieName, movieReview:review}])
+    // const getdata = () =>{
+    //     Axios.get("http://localhost:3001/api/getselected",{
+    //         fid:id,
+    //     }).then((response) =>{
+    //         setMovieList(response.data)
+    //     });
+    //     setMovieList([
+    //         ...movieReviewList,
+    //         {fid: id,movieName: movieName, movieReview:review}])
 
-    }
+
+
+
+    const getdata = () =>{
+            Axios.get("http://localhost:3001/api/getselected").then((response) =>{
+                setMovieList(response.data)
+            });
+        };
+
+
+
+
+
+
+
+
+    // }
     // const getdata = (id) => {
     //     Axios.get('http://localhost:3001/api/getselected'
     //     ).then((response) =>{
